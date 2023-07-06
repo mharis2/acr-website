@@ -1,0 +1,168 @@
+.quote-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 2000px;
+    margin: 2rem auto;
+    padding: 3em;
+    box-sizing: border-box;
+}
+.quote-form h2 {
+    font-size: 2em; /* You can adjust the size as needed */
+    font-weight: normal;
+}
+
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 50px;  
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width-input-group {
+    align-items: flex-start;
+}
+
+.quote-form h2 {
+    text-align: center;
+    margin-bottom: 2em;  
+}
+
+.quote-form label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin-bottom: 5px;
+}
+
+
+.quote-form span {
+    color: red;
+}
+
+.quote-form input, .quote-form select, .quote-form textarea {
+    width: 600px;
+    padding: 1em;  
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 18px;  
+}
+
+.quote-form select, .quote-form textarea {
+    margin-bottom: 50px;
+}
+
+.quote-form textarea {
+    height: 150px;  
+    resize: vertical;
+    width: 100%;  
+}
+
+.quote-form button {
+    background-color: #007BFF; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;  
+    margin: 20px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.quote-form button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    text-align: center;
+    margin-bottom: 2em;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    width: 50%;
+    max-width: 600px;
+    margin: 20px auto;
+    position: relative;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    animation: fadeIn 0.5s, fadeOut 0.5s 4.5s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.message.error {
+    background-color: #f44336;
+}
+
+.message.success {
+    background-color: #4caf50;
+}
+
+.message::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #4caf50 transparent;
+    transform: translate(-50%);
+}
+
+.message.error::before {
+    border-color: transparent transparent #f44336 transparent;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.full-width-input-group select, .full-width-input-group textarea {
+    width: 100%;
+    padding: 1em;  
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 18px;
+    margin-bottom: 50px;
+}
+@media (max-width: 768px) {
+    .input-group {
+      grid-template-columns: 1fr;
+    }
+    .quote-form input, .quote-form select, .quote-form textarea {
+      width: 100%;
+    }
+    .quote-form {
+      padding: 1em;
+    }
+  }
+  

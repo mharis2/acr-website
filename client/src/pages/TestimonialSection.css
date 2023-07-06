@@ -1,0 +1,11 @@
+.testimonial-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1em;
+}
+.testimonial-section h2 {
+    font-size: 2em; /* You can adjust the size as needed */
+    font-weight: normal;
+    margin-bottom: 100px;
+}

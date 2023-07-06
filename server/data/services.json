@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Eavestrough",
+        "description": "Installation and repair of eavestroughs.",
+        "image": "gear.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Fascia/Soffit",
+        "description": "Fascia and soffit installation services.",
+        "image": "gear.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Flashing",
+        "description": "Flashing installation and maintenance services.",
+        "image": "gear.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Exterior Painting",
+        "description": "Exterior painting services for residential and commercial buildings.",
+        "image": "gear.jpg"
+    }
+]

@@ -1,0 +1,31 @@
+/* client/src/components/ServiceCard.css */
+
+.service-card {
+    text-align: left;
+    padding: 20px;
+    max-width: 250px; /* Optional: You can set a maximum width for the service card */
+}
+
+.service-icon {
+    font-size: 2em;
+    margin-bottom: 15px;
+    max-width: 200px; /* Set the maximum width for the image */
+    max-height: 200px; /* Set the maximum height for the image */
+
+
+}
+
+.service-icon img {
+    max-width: 100%;
+    height: auto;
+
+}
+
+.service-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.service-description {
+    color: #777;
+}

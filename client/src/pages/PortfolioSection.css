@@ -1,0 +1,64 @@
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  min-width: 30%;
+}
+
+.carousel-item img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  text-align: left;
+  width: 600px; 
+  height: 400px; 
+  margin: 0 auto;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.react-multi-carousel-list.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-multi-carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .card {
+    text-align: left;
+    width: 100%; 
+    height: auto; 
+    margin: 0 auto;
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  
+}

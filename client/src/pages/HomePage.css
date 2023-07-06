@@ -1,0 +1,122 @@
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.hero-section {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 0 50px;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
+    max-width: 45%;
+}
+
+.hero-text h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.hero-text p {
+    font-size: 1.5em;
+    color: #444;
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.section-divider {
+    height: 3px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(128, 128, 128, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    margin: 40px 0;
+}
+
+.services-section {
+    text-align: center;
+    padding: 40px;
+}
+
+.services-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.services-section h2 {
+    font-size: 2em;
+    font-weight: normal;
+}
+
+.portfolio-section h2 {
+    font-size: 2em;
+    font-weight: normal;
+    margin-bottom: 100px;
+}
+
+.request-quote-button {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-weight: 400;
+    border: 2px solid #333;
+    border-radius: 25px;
+    background-color: transparent;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.request-quote-button:hover {
+    background-color: #333;
+    color: #ffffff;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+
+    .hero-text,
+    .hero-image {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2em;
+    }
+
+    .hero-text p {
+        font-size: 1.2em;
+    }
+
+    .services-grid {
+        flex-direction: column;
+    }
+
+    .request-quote-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}

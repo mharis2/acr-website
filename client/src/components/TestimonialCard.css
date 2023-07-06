@@ -1,0 +1,29 @@
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px; /* Increase the margin for more space between cards */
+    max-width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white;
+    text-align: left; 
+    /* increase the size of the card */
+
+}
+
+.testimonial-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.testimonial-text {
+    margin-bottom: 15px;
+    font-style: italic; /* Make the testimonial text italic */
+}
+
+.testimonial-name {
+    font-weight: bold;
+}
