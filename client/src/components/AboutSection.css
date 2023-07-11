@@ -14,7 +14,7 @@
 .about-card {
     display: flex;
     align-items: stretch;
-    justify-content: space-between;
+    justify-content: space-between; /* This line ensures maximum space between flex items */
     max-width: 1800px;
     width: 100%;
     background-color: #ffffff;
@@ -25,13 +25,12 @@
 
 .about-text {
     flex: 1.2;
-    margin-right: 40px;
+    margin-right: 40px; /* You can decrease this back to the original value or even remove it */
     align-self: start;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-
 .about-card p {
     font-size: 1.2em;
     margin-bottom: 35px;
@@ -45,18 +44,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 40px;
-    
-    
+    margin-right: 80px; /* You can decrease this back to the original value or even remove it */
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1); /* Adds a shadow to the image */
+    transition: box-shadow 0.3s ease-in-out; /* This will make the changes smooth when hovering over the image */
 }
-
+.about-image img:hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* This will increase the shadow when you hover over the image */
+}
 .about-image img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
 }
 
-/* Responsive styling */
 @media (max-width: 768px) {
     .about-section {
         padding: 20px;
@@ -73,7 +74,15 @@
     }
     
     .about-image {
-        margin-left: 0;
-        margin-top: 20px;
+        margin: 20px 0;  /* Apply top and bottom margins and remove left and right margins */
+        align-items: flex-start;  /* Align the image at the start of the container */
+    }
+
+    .about-image img {
+        max-width: none;  /* Remove the max-width */
+        width: 100%;  /* This will make the image take up the full width of its container */
+        height: auto;  /* This will maintain the aspect ratio of the image */
     }
 }
+
+

@@ -45,7 +45,9 @@ body {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(128, 128, 128, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
     margin: 40px 0;
 }
-
+section {
+    padding: 50px 0; /* Adjust this value to the desired space */
+}
 .services-section {
     text-align: center;
     padding: 40px;
@@ -66,7 +68,6 @@ body {
 .portfolio-section h2 {
     font-size: 2em;
     font-weight: normal;
-    margin-bottom: 100px;
 }
 
 .request-quote-button {
@@ -100,7 +101,12 @@ body {
     .hero-text,
     .hero-image {
         max-width: 100%;
+        text-align: left;
+    }
+    .services-section h2 {
+        font-size: 1.5em;
         text-align: center;
+        /* increase the width container of the text box */
     }
 
     .hero-text h1 {

@@ -82,27 +82,29 @@ const PortfolioSection = () => {
     }
 
     return (
-      <div className="carousel">
-          <Carousel 
-              responsive={responsive}
-              infinite={true}
-              autoPlaySpeed={1000}
-              keyBoardControl={true}
-              customTransition="transform 1000ms ease-in-out"  // Adjust this value
-              transitionDuration={1000} // Adjust this value
-              showDots={true}
-              arrows={true}
-              containerClass="carousel"
-          >
-              {portfolioItems.map(item => (
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                      <PortfolioCard item={item} />
-                  </div>
-              ))}
-          </Carousel>
-      </div>
+      <section id="portfolio" className="portfolio-section">
+          <h2>Exquisite craftsmanship in every project</h2>
+          <div className="carousel">
+              <Carousel 
+                  responsive={responsive}
+                  infinite={true}
+                  autoPlaySpeed={1000}
+                  keyBoardControl={true}
+                  customTransition="transform 1000ms ease-in-out"  // Adjust this value
+                  transitionDuration={1000} // Adjust this value
+                  showDots={true}
+                  arrows={true}
+                  containerClass="carousel"
+              >
+                  {portfolioItems.map(item => (
+                      <div style={{ display: 'flex', justifyContent: 'center' }}>
+                          <PortfolioCard item={item} />
+                      </div>
+                  ))}
+              </Carousel>
+          </div>
+      </section>
   );
-  
 };
 
 export default PortfolioSection;

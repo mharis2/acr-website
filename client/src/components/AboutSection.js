@@ -5,7 +5,7 @@ import aboutImage from '../assets/house2.png'; // Replace with your about image
 const AboutSection = () => {
     return (
         <section id="about" className="about-section">
-            <h2>Foundation of craftsmanship in construction</h2>
+            <h2>Our journey in construction</h2>
             <div className="about-card">
                 <div className="about-image">
                     <img src={aboutImage} alt="About ACR Construction" />

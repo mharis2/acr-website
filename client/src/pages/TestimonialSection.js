@@ -23,14 +23,14 @@ const TestimonialSection = () => {
     }
 
     return (
-        <div className="testimonial-section">
+        <section id="testimonials" className="testimonial-section">
             <h2 className="section-title">Hear from those whose spaces we've transformed</h2>
             <div className="testimonial-grid">
                 {testimonials.map(testimonial => (
                     <TestimonialCard key={testimonial.id} name={testimonial.name} testimonial={testimonial.testimonial} />
                 ))}
             </div>
-        </div>
+        </section>
     );
 };
 

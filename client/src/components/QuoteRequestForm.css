@@ -69,23 +69,26 @@
 }
 
 .quote-form button {
-    background-color: #007BFF; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 18px;  
-    margin: 20px 2px;
+    display: inline-block;
+    margin-top: 35px;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-weight: 400;
+    border: 2px solid #333;
+    border-radius: 25px;
+    background-color: transparent;
+    color: #333;
     cursor: pointer;
-    border-radius: 4px;
-    margin-left: 0;
-    margin-right: auto;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 1px;
+    text-decoration: none;
+    /* Align the button left: ; */
+    
 }
 
 .quote-form button:hover {
-    background-color: #0056b3;
+    background-color: #333;
+    color: #ffffff;
 }
 
 .message {

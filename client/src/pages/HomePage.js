@@ -8,6 +8,7 @@ import AboutSection from '../components/AboutSection';
 import PortfolioSection from './PortfolioSection'
 import TestimonialsSection from './TestimonialSection';
 import QuoteRequestPage from './QuoteRequestPage';
+import Footer from '../components/Footer';
 
 const HomePage = () => {
     const [services, setServices] = useState([]);
@@ -48,7 +49,7 @@ const HomePage = () => {
             <section id="services" className="services-section">
             {/* Services Section */}
             <div className="services-section">
-            <h2>Transforming spaces with expert construction services</h2>
+            <h2>Our services</h2>
                 <div className="services-grid">
                     {services.map(service => (
                         <ServiceCard
@@ -70,7 +71,7 @@ const HomePage = () => {
             <div className="section-divider"></div>
    {/* Portfolio Section */}
 <section id="portfolio" className="portfolio-section">
-    <h2>Exquisite craftmanship in every project</h2> {/* Change this line with your chosen header */}
+    {/* <h2>Exquisite craftmanship in every project</h2> Change this line with your chosen header */}
     <PortfolioSection />
 </section>
             <div className="section-divider"></div>
@@ -79,7 +80,6 @@ const HomePage = () => {
             {/* Testimonials Section */}
             <section id="testimonials" className="testimonials-section">
                 <TestimonialsSection />
-                {/* Testimonials content here */}
             </section>
             <div className="section-divider"></div>
 
@@ -88,6 +88,7 @@ const HomePage = () => {
                 <QuoteRequestPage />
                 {/* Contact form here */}
             </section>
+            <Footer />
 
         </div>
     );

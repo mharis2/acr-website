@@ -136,7 +136,7 @@ const QuoteRequestForm = () => {
                 onChange={handleInputChange}
             />
         </div>
-        <button type="submit">Send message</button>
+        <button type="submit">Submit</button>
     </form>
 </div>
 

@@ -1,0 +1,41 @@
+/* Footer.css */
+.footer {
+    background-color: #fdf6f0; /* Light beige */
+    padding: 20px 0;
+    border-top: 3px solid;
+    border-image-source: linear-gradient(to right, #e4a788, #fbebc5); /* Border with gradient */
+    border-image-slice: 1;
+    width: 100%;
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    color: #3c4043; /* Dark gray */
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-socials a {
+    color: #3c4043; /* Dark gray */
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: #5f6368; /* Gray on hover */
+}
