@@ -1,4 +1,4 @@
-.quote-form {
+.career-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,13 +8,52 @@
     margin: 2rem auto;
     padding: 3em;
     box-sizing: border-box;
+}
+
+
+.career-form h2 {
+    text-align: center;
+    margin-bottom: 2em;
+
+    font-size: 2em;
+    font-weight: normal;
+}
+
+.career-form h3 {
+    font-size: 1.2em;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 3em;
+    margin-top: -1em;
+    color: #666;
+}
+
+.career-form input[type="file"] {
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    margin-bottom: 30px;
+    background: #f8f8f8;
+}
+
+.career-form input[type="file"]::-webkit-file-upload-button {
+    padding: 0.5em;
+    background: #333;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
     font-family: 'Nunito', sans-serif;
 
 }
-.quote-form h2 {
-    font-size: 2em; /* You can adjust the size as needed */
-    font-weight: normal;
+
+.career-form input[type="file"]::-webkit-file-upload-button:hover {
+    background: #555;
+    font-family: 'Nunito', sans-serif;
+
 }
+
 
 .input-group {
     display: grid;
@@ -26,20 +65,13 @@
 .input-field {
     display: flex;
     flex-direction: column;
-    font-family: 'Nunito', sans-serif;
-
 }
 
 .full-width-input-group {
     align-items: flex-start;
 }
 
-.quote-form h2 {
-    text-align: center;
-    margin-bottom: 2em;  
-}
-
-.quote-form label {
+.career-form label {
     display: block;
     width: 100%;
     text-align: left;
@@ -50,33 +82,29 @@
 
 }
 
-
-.quote-form span {
+.career-form span {
     color: red;
 }
 
-.quote-form input, .quote-form select, .quote-form textarea {
+.career-form input, .career-form textarea {
     width: 600px;
     padding: 1em;  
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 18px;  
+    font-size: 18px;
     font-family: 'Nunito', sans-serif;
 
 }
 
-.quote-form select, .quote-form textarea {
+.career-form textarea {
     margin-bottom: 50px;
-}
-
-.quote-form textarea {
     height: 150px;  
     resize: vertical;
     width: 100%;  
 }
 
-.quote-form button {
+.career-form button {
     display: inline-block;
     margin-top: 35px;
     padding: 15px 40px;
@@ -90,13 +118,11 @@
     transition: all 0.3s ease-in-out;
     letter-spacing: 1px;
     text-decoration: none;
-    /* Align the button left: ; */
     font-family: 'Nunito', sans-serif;
 
-    
 }
 
-.quote-form button:hover {
+.career-form button:hover {
     background-color: #333;
     color: #ffffff;
 }
@@ -115,9 +141,6 @@
     animation: fadeIn 0.5s, fadeOut 0.5s 4.5s;
     opacity: 0;
     animation-fill-mode: forwards;
-    /* left align the button */
-    
-
 }
 
 .message.error {
@@ -161,7 +184,7 @@
     }
 }
 
-.full-width-input-group select, .full-width-input-group textarea {
+.full-width-input-group input[type="file"], .full-width-input-group textarea {
     width: 100%;
     padding: 1em;  
     border: 1px solid #ccc;
@@ -170,15 +193,15 @@
     font-size: 18px;
     margin-bottom: 50px;
 }
+
 @media (max-width: 768px) {
     .input-group {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-    .quote-form input, .quote-form select, .quote-form textarea {
-      width: 100%;
+    .career-form input, .career-form textarea {
+        width: 100%;
     }
-    .quote-form {
-      padding: 1em;
+    .career-form {
+        padding: 1em;
     }
-  }
-  
+}

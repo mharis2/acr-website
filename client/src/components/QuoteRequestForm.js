@@ -34,14 +34,14 @@ const QuoteRequestForm = () => {
         e.preventDefault();
         try {
             // Find the selected service title
-            const selectedService = services.find(service => service.id === formData.service);
-
+            const selectedService = services.find(service => service.name === formData.service);
+    
             // Append service title to formData
             const newFormData = {
                 ...formData,
                 service: selectedService ? selectedService.name : 'Other',
             };
-
+    
             await axios.post(`${process.env.REACT_APP_BASE_URL}/contact`, newFormData);
             setMessage({ type: 'success', text: 'Your message has been sent!' });
             setTimeout(() => {
@@ -64,81 +64,83 @@ const QuoteRequestForm = () => {
     };
     
 
+
     return (
-<div className="quote-form">
-    <h2>Request a quote today</h2>
-    {message && <div className={`message ${message.type}`}>{message.text}</div>}
-    <form onSubmit={handleSubmit}>
-        <div className="input-group">
-            <div className="input-field">
-                <label>First Name<span>*</span></label>
-                <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
-            <div className="input-field">
-                <label>Last Name<span>*</span></label>
-                <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
+        <div className="quote-form">
+            <h2>Request a quote today</h2>
+            {message && <div className={`message ${message.type}`}>{message.text}</div>}
+            <form onSubmit={handleSubmit}>
+                <div className="input-group">
+                    <div className="input-field">
+                        <label>First Name<span>*</span></label>
+                        <input
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div className="input-field">
+                        <label>Last Name<span>*</span></label>
+                        <input
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                </div>
+                <div className="input-group">
+                    <div className="input-field">
+                        <label>Email<span>*</span></label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div className="input-field">
+                        <label>Phone Number<span>*</span></label>
+                        <input
+                            type="tel"
+                            name="phoneNumber"
+                            value={formData.phoneNumber}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                </div>
+                <div className="full-width-input-group">
+                    <label>Service<span>*</span></label>
+                    <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="">Select a Service</option>
+                        {services.map(service => (
+                            <option key={service.id} value={service.name}>
+                                {service.name}
+                            </option>
+                        ))}
+                        <option value="other">Other</option>
+                    </select>
+
+                    <label>Please share any details</label>
+                    <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
         </div>
-        <div className="input-group">
-            <div className="input-field">
-                <label>Email<span>*</span></label>
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
-            <div className="input-field">
-                <label>Phone Number<span>*</span></label>
-                <input
-                    type="tel"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleInputChange}
-                    required
-                />
-            </div>
-        </div>
-        <div className="full-width-input-group">
-            <label>Service<span>*</span></label>
-            <select
-                name="service"
-                value={formData.service}
-                onChange={handleInputChange}
-                required
-            >
-                <option value="">Select a Service</option>
-                {services.map(service => (
-                    <option key={service.id} value={service.id}>
-                        {service.name}
-                    </option>
-                ))}
-                <option value="other">Other</option>
-            </select>
-            <label>Please share any details</label>
-            <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-            />
-        </div>
-        <button type="submit">Submit</button>
-    </form>
-</div>
 
     );
 };

@@ -9,6 +9,7 @@ import PortfolioSection from './PortfolioSection'
 import TestimonialsSection from './TestimonialSection';
 import QuoteRequestPage from './QuoteRequestPage';
 import Footer from '../components/Footer';
+import CareerForm from '../components/CareerForm';
 
 const HomePage = () => {
     const [services, setServices] = useState([]);
@@ -87,6 +88,10 @@ const HomePage = () => {
             <section id="contact" className="contact-section">
                 <QuoteRequestPage />
                 {/* Contact form here */}
+            </section>
+            <div className="section-divider"></div>
+            <section id = "career" className="career-section">
+                <CareerForm />
             </section>
             <Footer />
 

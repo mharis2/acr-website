@@ -39,6 +39,7 @@ const Navbar = () => {
                     <li><a href="#portfolio" onClick={handleLinkClick}>Portfolio</a></li>
                     <li><a href="#testimonials" onClick={handleLinkClick}>Testimonials</a></li>
                     <li><a href="#contact" onClick={handleLinkClick}>Contact</a></li>
+                    <li><a href="#career" onClick={handleLinkClick}>Careers</a></li>
                 </ul>
             </div>
         </nav>

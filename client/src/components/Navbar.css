@@ -1,6 +1,7 @@
 /* Navbar.css */
 html {
     scroll-padding-top: 70px; /* height of your navbar */
+    scroll-behavior: smooth;
 }
 
 .navbar {
