@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const multer = require('multer');
 const {Storage} = require('@google-cloud/storage');
+const fs = require('fs');
 
 // Load environment variables
 if (process.env.NODE_ENV === 'production') {
@@ -23,9 +24,14 @@ const bucket = storage.bucket('acr_media_bucket');
 
 // Configure multer for file upload
 const upload = multer({
-    storage: multer.memoryStorage(),
+    storage: multer.diskStorage({
+        destination: '/tmp/',
+        filename: function (req, file, cb) {
+            cb(null, Date.now() + '-' + file.originalname);
+        },
+    }),
     limits: {
-        fileSize: 5 * 1024 * 1024, // Limit file size to 5MB
+        fileSize: 2 * 1024 * 1024, // Limit file size to 2MB
     },
 });
 
@@ -75,49 +81,49 @@ app.post('/contact', express.json(), (req, res) => {
         },
     });
 
-    const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.RECIPIENT_EMAIL,
-        subject: 'ACR Quote Request',
-        html: `
-            <h1 style="font-family: Arial, sans-serif; color: #333;">New ACR Quote Request</h1>
-            <table style="font-family: Arial, sans-serif; border-collapse: collapse; width: 100%;">
-                <thead>
-                    <tr style="background-color: #f2f2f2;">
-                        <th style="border: 1px solid #ddd; padding: 8px;">Detail</th>
-                        <th style="border: 1px solid #ddd; padding: 8px;">Information</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;">First Name</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${firstName}</td>
-                    </tr>
-                    <tr style="background-color: #f2f2f2;">
-                        <td style="border: 1px solid #ddd; padding: 8px;">Last Name</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${lastName}</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;">Phone Number</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${phoneNumber}</td>
-                    </tr>
-                    <tr style="background-color: #f2f2f2;">
-                        <td style="border: 1px solid #ddd; padding: 8px;">Email</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${email}</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;">Service</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${service}</td>
-                    </tr>
-                    <tr style="background-color: #f2f2f2;">
-                        <td style="border: 1px solid #ddd; padding: 8px;">Description</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${description}</td>
-                    </tr>
-                </tbody>
-            </table>
-        `,
-        priority: 'high',
-    };
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: process.env.RECIPIENT_EMAIL,
+            subject: 'ACR Career Application',
+            html: `
+                <h1 style="font-family: Arial, sans-serif; color: #333;">New ACR Career Application</h1>
+                <table style="font-family: Arial, sans-serif; border-collapse: collapse; width: 100%;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="border: 1px solid #ddd; padding: 8px;">Detail</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">First Name</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.firstName}</td>
+                        </tr>
+                        <tr style="background-color: #f2f2f2;">
+                            <td style="border: 1px solid #ddd; padding: 8px;">Last Name</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.lastName}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">Email</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.email}</td>
+                        </tr>
+                        <tr style="background-color: #f2f2f2;">
+                            <td style="border: 1px solid #ddd; padding: 8px;">Phone Number</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.phoneNumber}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">About</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.about}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `,
+            attachments: [{
+                filename: req.file.originalname,
+                content: fileBuffer,
+            }],
+            priority: 'high',
+        };
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -140,7 +146,7 @@ app.post('/career', upload.single('resume'), async (req, res) => {
 
     try {
         // Create a new blob in the bucket and upload the file data
-        const blob = bucket.file(req.file.originalname);
+        const blob = bucket.file(req.file.filename);
         const blobStream = blob.createWriteStream();
 
         blobStream.on('error', (err) => {
@@ -152,13 +158,14 @@ app.post('/career', upload.single('resume'), async (req, res) => {
             // The file upload is complete
             console.log('File upload to Google Cloud Storage complete.');
 
-            // Now you can send the email with the link to the uploaded file
-            const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+            // Download file from GCS to local
+            const filePath = '/tmp/' + req.file.filename;
+            await storage.bucket(bucket.name).file(blob.name).download({ destination: filePath });
 
-            // The rest of your email sending code goes here, you can include publicUrl
-            // in the email to provide a link to the uploaded file.
+            // Read file into buffer for attachment
+            const fileBuffer = fs.readFileSync(filePath);
 
-            // Here's an example:
+            // Now you can send the email with the attached file
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
@@ -170,17 +177,44 @@ app.post('/career', upload.single('resume'), async (req, res) => {
             const mailOptions = {
                 from: process.env.EMAIL_USER,
                 to: process.env.RECIPIENT_EMAIL,
-                subject: 'ACR Career Application',
+                subject: `ACR Career Application - ${req.body.firstName} ${req.body.lastName}`,
                 html: `
-                    <h1>New ACR Career Application</h1>
-                    <p>Applicant Details:</p>
-                    <p>First Name: ${req.body.firstName}</p>
-                    <p>Last Name: ${req.body.lastName}</p>
-                    <p>Email: ${req.body.email}</p>
-                    <p>Phone: ${req.body.phone}</p>
-                    <p>About: ${req.body.about}</p>
-                    <p>Resume: <a href="${publicUrl}">Download</a></p>
+                    <h1 style="font-family: Arial, sans-serif; color: #333;">New ACR Career Application</h1>
+                    <table style="font-family: Arial, sans-serif; border-collapse: collapse; width: 100%;">
+                        <thead>
+                            <tr style="background-color: #f2f2f2;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">Detail</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Information</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">First Name</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${req.body.firstName}</td>
+                            </tr>
+                            <tr style="background-color: #f2f2f2;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">Last Name</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${req.body.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Email</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${req.body.email}</td>
+                            </tr>
+                            <tr style="background-color: #f2f2f2;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">Phone Number</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${req.body.phoneNumber}</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">About</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${req.body.about}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 `,
+                attachments: [{
+                    filename: req.file.originalname,
+                    content: fileBuffer,
+                }],
                 priority: 'high',
             };
 
@@ -190,20 +224,28 @@ app.post('/career', upload.single('resume'), async (req, res) => {
                     return res.status(500).json({message: 'Error sending email'});
                 } else {
                     console.log('Email sent: ' + info.response);
+
+                    // Delete file from local after email has been sent
+                    fs.unlink(filePath, (err) => {
+                        if (err) {
+                            console.error('Failed to delete local file:', err);
+                        } else {
+                            console.log('Local file deleted');
+                        }
+                    });
+
                     res.json({message: 'Email sent successfully'});
                 }
             });
         });
 
-        blobStream.end(req.file.buffer);
+        fs.createReadStream('/tmp/' + req.file.filename).pipe(blobStream);
     } catch (err) {
         console.error('Error handling career form submission:', err);
         res.status(500).json({message: 'Error processing form.'});
     }
 });
 
-
-// Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });

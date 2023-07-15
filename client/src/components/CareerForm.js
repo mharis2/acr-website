@@ -101,7 +101,7 @@ const CareerForm = () => {
             </div>
         </div>
         <div className="full-width-input-group">
-            <label>Resume<span>*</span></label>
+            <label>Resume (2MB)<span>*</span></label>
             <input
                 type="file"
                 name="resume"
