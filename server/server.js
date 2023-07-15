@@ -72,7 +72,6 @@ app.get('/services', (req, res) => {
 // Handle contact form submission
 app.post('/contact', express.json(), (req, res) => {
     const { firstName, lastName, phoneNumber, email, service, description } = req.body;
-
     const transporter = nodemailer.createTransport({
         service: 'gmail', // Use the email service you are using, e.g. 'gmail'
         auth: {
@@ -80,51 +79,49 @@ app.post('/contact', express.json(), (req, res) => {
             pass: process.env.EMAIL_PASS,
         },
     });
-
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: process.env.RECIPIENT_EMAIL,
-            subject: 'ACR Career Application',
-            html: `
-                <h1 style="font-family: Arial, sans-serif; color: #333;">New ACR Career Application</h1>
-                <table style="font-family: Arial, sans-serif; border-collapse: collapse; width: 100%;">
-                    <thead>
-                        <tr style="background-color: #f2f2f2;">
-                            <th style="border: 1px solid #ddd; padding: 8px;">Detail</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Information</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;">First Name</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.firstName}</td>
-                        </tr>
-                        <tr style="background-color: #f2f2f2;">
-                            <td style="border: 1px solid #ddd; padding: 8px;">Last Name</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.lastName}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;">Email</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.email}</td>
-                        </tr>
-                        <tr style="background-color: #f2f2f2;">
-                            <td style="border: 1px solid #ddd; padding: 8px;">Phone Number</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.phoneNumber}</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px;">About</td>
-                            <td style="border: 1px solid #ddd; padding: 8px;">${req.body.about}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `,
-            attachments: [{
-                filename: req.file.originalname,
-                content: fileBuffer,
-            }],
-            priority: 'high',
-        };
-
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.RECIPIENT_EMAIL,
+        subject: 'ACR Quote Request',
+        html: `
+            <h1 style="font-family: Arial, sans-serif; color: #333;">New ACR Quote Request</h1>
+            <table style="font-family: Arial, sans-serif; border-collapse: collapse; width: 100%;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="border: 1px solid #ddd; padding: 8px;">Detail</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">First Name</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${firstName}</td>
+                    </tr>
+                    <tr style="background-color: #f2f2f2;">
+                        <td style="border: 1px solid #ddd; padding: 8px;">Last Name</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${lastName}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Phone Number</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${phoneNumber}</td>
+                    </tr>
+                    <tr style="background-color: #f2f2f2;">
+                        <td style="border: 1px solid #ddd; padding: 8px;">Email</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${email}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">Service</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${service}</td>
+                    </tr>
+                    <tr style="background-color: #f2f2f2;">
+                        <td style="border: 1px solid #ddd; padding: 8px;">Description</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${description}</td>
+                    </tr>
+                </tbody>
+            </table>
+        `,
+        priority: 'high',
+    };
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
