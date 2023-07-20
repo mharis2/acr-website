@@ -2,36 +2,22 @@
     {
         "id": 1,
         "title": "House Renovation",
-        "description": "A complete house renovation with eavestrough and exterior painting.",
-        "image": "gear.jpg",
+        "description": "Complete residential renovation with a focus on modern kitchen and bathroom transformations.",
+        "image": "bathroom_portfolio.png",
         "date": "2023-05-20"
     },
     {
         "id": 2,
-        "title": "Office Building",
-        "description": "Installation of fascia and soffit for a new office building.",
-        "image": "gear.jpg",
+        "title": "Gutter Work",
+        "description": "Tailored installation of fascia, soffit, and eavestroughs for both vintage and new homes.",
+        "image": "fascia_portfolio.png",
         "date": "2023-05-28"
     },
     {
         "id": 3,
-        "title": "Kitchen Remodel",
-        "description": "Modern kitchen remodel with custom cabinets.",
-        "image": "gear.jpg",
+        "title": "Exterior Painting",
+        "description": "Exterior painting services to boost aesthetics and provide a weather-resistant finish.",
+        "image": "exterior_portfolio.png",
         "date": "2023-04-30"
-    },
-    {
-        "id": 4,
-        "title": "Bathroom Upgrade",
-        "description": "Upgraded bathroom with new tile and fixtures.",
-        "image": "gear.jpg",
-        "date": "2023-03-20"
-    },
-    {
-        "id": 5,
-        "title": "Outdoor Patio",
-        "description": "Constructed an outdoor patio with a pergola.",
-        "image": "gear.jpg",
-        "date": "2023-02-28"
     }
 ]

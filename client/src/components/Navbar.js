@@ -34,8 +34,8 @@ const Navbar = () => {
                 </div>
                 <ul className={navClasses.join(" ")}>
                     <li><a href="#home" onClick={handleLinkClick}>Home</a></li>
-                    <li><a href="#about" onClick={handleLinkClick}>About</a></li>
                     <li><a href="#services" onClick={handleLinkClick}>Services</a></li>
+                    <li><a href="#about" onClick={handleLinkClick}>About</a></li>
                     <li><a href="#portfolio" onClick={handleLinkClick}>Portfolio</a></li>
                     <li><a href="#testimonials" onClick={handleLinkClick}>Testimonials</a></li>
                     <li><a href="#contact" onClick={handleLinkClick}>Contact</a></li>

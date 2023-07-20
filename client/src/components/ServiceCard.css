@@ -9,8 +9,8 @@
 .service-icon {
     font-size: 2em;
     margin-bottom: 15px;
-    max-width: 200px; /* Set the maximum width for the image */
-    max-height: 200px; /* Set the maximum height for the image */
+    max-width: 250px; /* Set the maximum width for the image */
+    max-height: 250px; /* Set the maximum height for the image */
 
 
 }
